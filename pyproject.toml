@@ -1,0 +1,63 @@
+[build-system]
+requires = ["hatchling>=1.25.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "civicaudit"
+version = "0.1.0"
+description = "Deterministic Open Contracting Data Standard (OCDS 1.1) public procurement forensic auditor: threshold contract-splitting, Benford's Law MAD/Chi-squared, co-bidding collusion graphs, and evidence reports."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11"
+authors = [
+    { name = "Akandwanaho Ivan Alvin", email = "codesphereinnovationz@gmail.com" },
+]
+keywords = [
+    "ocds",
+    "public-procurement",
+    "anti-corruption",
+    "governance",
+    "transparency",
+    "benford",
+    "forensics",
+    "civic-tech",
+    "audit",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=5.0.0",
+    "ruff>=0.8.0",
+    "mypy>=1.11.0",
+]
+
+[project.scripts]
+civicaudit = "civicaudit.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/codesphere-u/civicaudit"
+Repository = "https://github.com/codesphere-u/civicaudit"
+Issues = "https://github.com/codesphere-u/civicaudit/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/civicaudit"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+mypy_path = "src"
+packages = ["civicaudit"]
